@@ -1,4 +1,4 @@
-# Name: Instance.py
+# Name: instance.py
 # Author: Isaac Cilia Attard
 # Date: 29/08/2022
 # Description: Forms the fundamental properties of a Vicky instance.
@@ -7,7 +7,7 @@ import pyttsx3
 import json
 from vosk import Model, KaldiRecognizer
 import pyaudio
-from NLP.Classifier import classify
+from nlu.classifier import classify
 
 class Core():
 
