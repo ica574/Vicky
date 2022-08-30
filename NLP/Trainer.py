@@ -68,21 +68,3 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc']
 model.fit(input_data, output_data, epochs=256)
 
 model.save('NLP\classificationModel.h5')
-'''
-def classify(text):
-    x = np.zeros((1, max_sent, 256), dtype='float32')
-
-    for k, ch in enumerate(bytes(text.encode('utf-8'))):
-        x[0, k, int(ch)] = 1.0
-    
-    out = model.predict(x)
-    idx = out.argmax()
-
-    # print('Text: "{}" is classified as "{}"'.format(text, idx2label[idx]))
-    return idx2label
-
-if __name__ == '__main__':
-    while True:
-        text = input('Enter some text: ')
-        classify(text)
-'''
