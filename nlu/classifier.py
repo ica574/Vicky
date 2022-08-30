@@ -1,4 +1,4 @@
-# Name: Classifier.py
+# Name: classifier.py
 # Author: Isaac Cilia Attard
 # Date: 26/08/2022
 # Description: Employs the trained deep learning model in order to classify commands given by the user.

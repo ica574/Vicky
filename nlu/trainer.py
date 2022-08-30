@@ -1,4 +1,4 @@
-# Name: Trainer.py
+# Name: trainer.py
 # Author: Isaac Cilia Attard
 # Date: 26/08/2022
 # Description: Trains the deep learning model on the commands file in order for the neural network to perform text classification.
