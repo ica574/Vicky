@@ -6,8 +6,8 @@
 from tensorflow.keras.models import load_model
 import numpy as np
 
-labels = open('NLP\entities.txt', 'r', encoding='utf-8').read().split('\n')
-model = load_model('NLP\classificationModel.h5')
+labels = open('nlu\entities.txt', 'r', encoding='utf-8').read().split('\n')
+model = load_model('nlu\classificationModel.h5')
 
 label2idx = {}
 idx2label = {}

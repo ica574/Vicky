@@ -1,0 +1,7 @@
+pyttsx3==2.90
+vosk==0.3.42
+json==
+yml==0.0.1
+tensorflow==2.9.1
+numpy==1.21.4
+os==

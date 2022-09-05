@@ -13,7 +13,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import LSTM, Dense
 from tensorflow.keras.utils import to_categorical
 
-data = yaml.safe_load(open('NLP\\Commands.yml').read())
+data = yaml.safe_load(open('nlu\\Commands.yml').read())
 
 inputs, outputs = [], []
 
@@ -39,12 +39,12 @@ print(input_data[0].shape)
 
 labels = set(outputs)
 
-fwrite = open('NLP\entities.txt', 'w', encoding='utf-8')
+fwrite = open('nlu\entities.txt', 'w', encoding='utf-8')
 for label in labels:
     fwrite.write(label + '\n')
 fwrite.close()
 
-labels = open('NLP\entities.txt', 'r', encoding='utf-8').read().split('\n')
+labels = open('nlu\entities.txt', 'r', encoding='utf-8').read().split('\n')
 
 label2idx = {}
 idx2label = {}
@@ -67,4 +67,4 @@ model.add(Dense(len(labels), activation="softmax"))
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 model.fit(input_data, output_data, epochs=256)
 
-model.save('NLP\classificationModel.h5')
+model.save('nlu\classificationModel.h5')
