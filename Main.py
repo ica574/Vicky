@@ -3,16 +3,20 @@
 # Date: 29/08/2022
 # Description: Main file pertatining to the assistant. Includes speech recognition model and wake word invocation function.
 
-from instance import core
-from event import event_hook
+from instance import Core
+from event import EventHook
+from apps import factory
 
-vicky = core() # Instantiates new Vicky instance with core functions
+vicky = Core() # Instantiates new Vicky instance with core functions
 
-vicky.before_wakeword, vicky.after_wakeword = event_hook(), event_hook() # Major events in the program's execution
+vicky.before_wakeword, vicky.after_wakeword = EventHook(), EventHook() # Major events in the program's execution
 
-vicky.before_wakeword.enlist(vicky.listen_for_wakeword())
-vicky.after_wakeword.enlist(vicky.listen_for_commands())
-vicky.before_wakeword.activate(0)
+vicky.before_wakeword.enlist(lambda: vicky.listen_for_wakeword()) # Registers event handlers with event hooks
+vicky.after_wakeword.enlist(lambda: vicky.listen_for_commands())
 
-if vicky.before_wakeword.activate(0) == True:
-    vicky.after_wakeword.activate(0)
+event_state = vicky.before_wakeword.activate(0)() # Inititates program and saves state of first event
+
+if event_state == True:
+    weather = factory.instantiate()
+    print(weather.handle_command())
+    #vicky.after_wakeword.activate(0)

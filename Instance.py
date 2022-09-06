@@ -9,7 +9,7 @@ from vosk import Model, KaldiRecognizer
 import pyaudio
 from nlu.classifier import classify
 
-class core(): # Defines core functions of the AI
+class Core(): # Defines core functions of the AI
     __skills = [] # Contains a list of skills that the assistant has at its disposal
 
     def __init__(self): # Constructor - initialises engines and neural networks for AI
@@ -43,7 +43,7 @@ class core(): # Defines core functions of the AI
     def listen_for_commands(self): # Listens for commands and classifies them
         while True:
             data = self.input_stream.read(4000, exception_on_overflow=False) # Read datastream from microphone
-            
+            text = ""
             if self.recogniser.AcceptWaveform(data):
                 result = self.recogniser.Result()            
                 result = json.loads(result)
