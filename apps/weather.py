@@ -3,16 +3,20 @@
 # Date: 05/09/2022
 # Description: Gives a brief weather report to the user.
 
-from apps.app import App
-import apps.factory
+import apps.factory as factory
 
-class Weather(App):
+class Weather():
+    def test(self):
+        print("Always sunny!")
+
+class Weather_App():
     def commands(self, command: str):
         return ['weather', 'forecast', 'what is the weather']
 
     def handle_command(self):
-        forecast = "Sunny forever"
-        return forecast
+        theweather = Weather()
+        return theweather.test()
     
-    def initialise():
-        factory.register('weather_skill', Weather)
+    def initialise(self):
+        factory.enlist("weather_skill", self)
+        factory.instantiate('weather_skill')

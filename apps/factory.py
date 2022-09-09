@@ -3,17 +3,15 @@
 # Author: Isaac Cilia Attard
 # Description: Creates objects to be used by the main program from other scripts with standard calls.
 
-from typing import Callable
-from apps.weather import Weather
+#app_list = dict()
+app_list = {"weather_skill": "test"}
+    
+def enlist(app_name, app_object):
+    app_list[app_name] = app_object
 
-app_list = {}
+def discharge(app_name):
+   app_list.pop(app_name)
 
-#def enlist(app_name: str, app_creation: Callable[..., App]):
-   #app_list[app_name] = app_creation
-
-def discharge(app_name: str):
-    app_list.pop(app_name, None)
-
-def instantiate():
-    weather = Weather()
-    return weather
+def instantiate(app_name):
+    app_object = app_list[app_name]
+    return app_object
