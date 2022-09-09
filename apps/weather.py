@@ -18,5 +18,5 @@ class Weather_App():
         return theweather.test()
     
     def initialise(self):
-        factory.enlist("weather_skill", self)
-        factory.instantiate('weather_skill')
+        factory.enlist("weather", self)
+        factory.instantiate('weather')

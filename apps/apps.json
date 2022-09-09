@@ -1,10 +1,4 @@
 {
-    "apps": [
-        "apps.weather"
-    ],
-    "identifier": [
-        {
-            "name": "weather"
-        }
-    ]
+    "app_name": "weather"
+    
 }
