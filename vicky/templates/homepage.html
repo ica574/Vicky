@@ -1,0 +1,83 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class='navbar'>
+      <h3>Vicky</h3>
+    </div>
+    <div class='container'>
+      <div class='content'>
+      <img src={% static '/images/main.png' %}></img>
+      <div class="container">
+      <h3>
+        Meet <span id="green-emphasis">Vicky</span>. A Personal Assistant You Can
+        Trust
+      </h3>
+    </div>
+      <div class="container">
+        <a id="ask-a"href="/ask">
+      <btn id="try-btn">Try now</btn>
+        </a>
+      <btn id="learn-btn">Learn More</btn>
+      </div>
+    </div>
+  </div>
+    </body>
+    </html>
+<style>
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .container{
+    display: flex;
+    justify-content: center;
+  }
+
+  .navbar{
+    display: flex;
+  }
+  #intro {
+    color: red;
+  }
+
+  #ask-a {
+    text-decoration: none;
+  }
+
+  #green-emphasis {
+    color: #21bf96;
+  }
+
+  #try-btn {
+    background-color: #21bf96;
+    color: white;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 10px;
+  }
+
+  #learn-btn {
+    background-color: #f2f6ff;
+    color: #2e7daf;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    border-radius: 10px;
+  }
+</style>
