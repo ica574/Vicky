@@ -3,20 +3,20 @@
 # Date: 05/09/2022
 # Description: Gives a brief weather report to the user.
 
-import apps.factory as factory
+#import package_manager as package_manager
 
 class Weather():
     def test(self):
         print("Always sunny!")
 
 class Weather_App():
-    def commands(self, command: str):
-        return ['weather', 'forecast', 'what is the weather']
+    def cues(self):
+        return ["forecast"]
 
-    def handle_command(self):
-        theweather = Weather()
-        return theweather.test()
-    
+    def run(self):
+        weather_app = Weather()
+        return weather_app.test()
+
     def initialise(self):
-        factory.enlist("weather", self)
-        factory.instantiate('weather')
+        pass
+        #package_manager.install("weather", self.__class__.__name__, self.cues())

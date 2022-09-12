@@ -4,7 +4,8 @@
 # Description: Main file pertatining to the assistant. Includes speech recognition model and wake word invocation function.
 
 from importlib import import_module
-from apps.weather import Weather_App
+from apps.package_manager import search_by_value, factory
+from apps import *
 from instance import Core
 from event import EventHook
 
@@ -19,6 +20,8 @@ event_state = vicky.before_wakeword.activate(0)() # Inititates program and saves
 
 if event_state == True:
     """Non-general loader that uses generalised factory"""
-    app = Weather_App()
-    app.initialise()
-    app.handle_command()
+    command = vicky.after_wakeword.activate(0)()
+    print(command)
+    app_exec = search_by_value(command)
+    app = factory(app_exec[0], app_exec[1])
+    app.run()

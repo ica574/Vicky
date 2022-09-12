@@ -50,5 +50,5 @@ class Core(): # Defines core functions of the AI
                 text = result['text']
                 if text == "":
                     pass
-            else:
-                entity = classify(text) # Classifies recognised text after wake word invocation
+                else:
+                    return text
