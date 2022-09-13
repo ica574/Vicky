@@ -1,0 +1,1 @@
+{"weather": {"class": "Weather_App", "cues": ["forecast", "what is the weather", "tell me the weather"]}, "test": {"class": "Test_App", "cues": ["test"]}}

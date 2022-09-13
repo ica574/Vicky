@@ -3,7 +3,7 @@
 # Date: 05/09/2022
 # Description: Gives a brief weather report to the user.
 
-#import package_manager as package_manager
+import apps.package_manager as package_manager
 
 class Weather():
     def test(self):
@@ -11,12 +11,11 @@ class Weather():
 
 class Weather_App():
     def cues(self):
-        return ["forecast"]
+        return ["forecast", "what is the weather", "tell me the weather"]
 
     def run(self):
         weather_app = Weather()
         return weather_app.test()
 
-    def initialise(self):
-        pass
-        #package_manager.install("weather", self.__class__.__name__, self.cues())
+    def manifest(self):
+        package_manager.install("weather", self.__class__.__name__, self.cues())

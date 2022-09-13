@@ -4,19 +4,18 @@
 # Description: Dummy app used to test factory functionality
 
 import apps.package_manager as package_manager
-from apps.app import App
 
 class Test():
     def test(self):
         print("It worked!")
 
-class Test_App(App):
+class Test_App():
     def cues(self):
-        return ['test']
+        return ["test"]
 
     def run(self):
         test = Test()
         return test.test()
 
-    def initialise(self):
+    def manifest(self):
         package_manager.install("test", self.__class__.__name__, self.cues())

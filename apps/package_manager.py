@@ -3,38 +3,35 @@
 # Author: Isaac Cilia Attard
 # Description: Manages packages and creates objects to be used by the main program from other scripts with standard calls.
 
-from importlib import *
 import importlib
-import pickle
+import json
 
-#app_dict = pickle.load(open("apps/apps.pkl", "rb"))
-app_dict = pickle.load(open("apps/apps.pkl", "rb"))
-# app_dict = pickle.Unpickler.load(open("apps/apps.pkl", "rb"))
+app_dict = json.load(open("./apps/apps.json", "r"))
 
-def install(app_name, class_name, app_cues):
-    app_dict[app_name] = {}
-    app_dict[app_name]['class'] = class_name
-    app_dict[app_name]['cues'] = app_cues
-    pickle.dump(app_dict, open("apps/apps.pkl", "wb"), protocol=pickle.HIGHEST_PROTOCOL)
+def install(module_name, class_name, app_cues): # Installs a module into the application dictionary
+    app_dict[module_name] = {}
+    app_dict[module_name]['class'] = class_name
+    app_dict[module_name]['cues'] = app_cues
+    json.dump(app_dict, open("./apps/apps.json", 'w'))
 
-def uninstall(app_name):
-    app_dict.pop(app_dict[app_name])
-    pickle.dump(app_dict, open("apps/apps.pkl", "wb"), protocol=pickle.HIGHEST_PROTOCOL)
+def uninstall(module_name): # Removes an app from the dictionary
+    app_dict.pop(app_dict[module_name])
+    json.dump(app_dict, open("./apps/apps.json", 'w'))
 
-def factory(module_name, class_name):
+def list():
+    return app_dict
+
+def search(command): # Returns a key from a value in the dictionary
+    for module_name in app_dict.keys():
+        for cue in app_dict[module_name]['cues']:
+            if command == cue:
+                return [module_name, app_dict[module_name]['class']]
+            else:
+                pass
+
+def factory(module_name, class_name): # Instantiates objects based on the keys corresponding to them in the dictionary
     directory = importlib.util.spec_from_file_location(module_name, "./apps/{}.py".format(module_name))
     app_module = directory.loader.load_module()
-    #class_ = getattr(module, "Weather_App")
-    #instance = class_()
-    #instance.run()
     app_object = getattr(app_module, class_name)
     app_instance = app_object()
     return app_instance
-
-def search_by_value(command):
-    for app_name in app_dict.keys():
-        for cue in app_dict[app_name]['cues']:
-            if command == cue:
-                return [app_name, app_dict[app_name]['class']]
-            else:
-                return None
