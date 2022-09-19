@@ -6,11 +6,18 @@
 from importlib import import_module
 from apps.package_manager import search, factory, list
 from apps import *
-from instance import Core
+from Instance import Core
 from event import EventHook
 
 from apps.test import Test_App
 from apps.weather import Weather_App
+
+import eel
+import eelHelper
+eel.init("web")
+
+eel.start("index.html", block=False)
+eelHelper.letConn()
 
 vicky = Core() # Instantiates new Vicky instance with core functions
 
@@ -24,6 +31,11 @@ event_state = vicky.before_wakeword.activate(0)() # Inititates program and saves
 if event_state == True:
     command = vicky.after_wakeword.activate(0)() # Listens for commands such that apps can be executed
     print(command)
+    eel.handleInput(command)
     app_exec = search(command)
     app = factory(app_exec[0], app_exec[1])
-    app.run()
+    if(app == "error"):
+        vicky.text_to_speech("Sorry, I didn't get you")
+    else:
+        vicky.text_to_speech(app.run())
+    

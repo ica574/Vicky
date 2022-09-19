@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vicky</title>
+    <script src="eel.js"></script>
+    <script>
+      function handleResponse(ans) {
+        document.getElementById("answer").textContent = ans;
+      }
+      eel.expose(handleResponse);
+
+      function handleInput(input) {
+        document.getElementById("input").textContent = input;
+      }
+      eel.expose(handleInput);
+
+      function handleLoaded(isLoaded) {
+        if (isLoaded === true) {
+          document.getElementById("answer").textContent =
+            "Say Vicky to initialize...";
+        } else {
+          document.getElementById("answer").textContent = "Loading..";
+        }
+      }
+      eel.expose(handleLoaded);
+    </script>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        justify-content: center;
+        background-color: lightgray;
+        width: 100vw;
+        height: 100vh;
+        border-radius: 20px;
+      "
+    >
+      <iframe
+        src="https://my.spline.design/untitled-668d46c3df32bda09433f37fa325caf0/"
+        frameborder="0"
+        width="100%"
+        height="100%"
+      ></iframe>
+      <div
+        style="
+          position: absolute;
+          display: flex;
+          bottom: 10%;
+          justify-content: center;
+          z-index: 2;
+        "
+      >
+        <h2 id="answer" style="color: white">Loading...</h2>
+        <br />
+        <h4 id="input" style="color: lightgray"></h4>
+      </div>
+    </div>
+  </body>
+</html>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  #multiply-btn {
+    padding-left: 1em;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+  }
+  #divide-btn {
+    padding-left: 1em;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    background-color: orange;
+    color: white;
+    border-radius: 8px;
+  }
+</style>

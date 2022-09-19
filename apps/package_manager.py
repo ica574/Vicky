@@ -30,8 +30,11 @@ def search(command): # Returns a key from a value in the dictionary
                 pass
 
 def factory(module_name, class_name): # Instantiates objects based on the keys corresponding to them in the dictionary
-    directory = importlib.util.spec_from_file_location(module_name, "./apps/{}.py".format(module_name))
-    app_module = directory.loader.load_module()
-    app_object = getattr(app_module, class_name)
-    app_instance = app_object()
-    return app_instance
+    try:
+        directory = importlib.util.spec_from_file_location(module_name, "./apps/{}.py".format(module_name))
+        app_module = directory.loader.load_module()
+        app_object = getattr(app_module, class_name)
+        app_instance = app_object()
+        return app_instance
+    except:
+        return "error"
