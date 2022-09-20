@@ -4,8 +4,6 @@
 # Description: Gives a brief weather report to the user.
 
 import apps.package_manager as package_manager
-from datetime import datetime
-from meteostat import Point, Daily
 import geocoder
 import requests
 

@@ -6,29 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vicky</title>
     <script src="eel.js"></script>
-    <script>
-      function handleResponse(ans) {
-        document.getElementById("answer").textContent = ans;
-      }
-      eel.expose(handleResponse);
+    <script src="https://unpkg.com/moralis-v1/dist/moralis.js"></script>
+    <script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.7.1/web3-provider.min.js"></script>
 
-      function handleInput(input) {
-        document.getElementById("input").textContent = input;
-      }
-      eel.expose(handleInput);
-
-      function handleLoaded(isLoaded) {
-        if (isLoaded === true) {
-          document.getElementById("answer").textContent =
-            "Say Vicky to initialize...";
-        } else {
-          document.getElementById("answer").textContent = "Loading..";
-        }
-      }
-      eel.expose(handleLoaded);
-    </script>
+    <script src="./eelMiddleMan.js"></script>
   </head>
   <body>
+    <button onclick="logout()">Log out</button>
     <div
       style="
         display: flex;
@@ -39,6 +23,8 @@
         border-radius: 20px;
       "
     >
+      <!---------------------------------3D-------------------------------------->
+
       <iframe
         src="https://my.spline.design/untitled-668d46c3df32bda09433f37fa325caf0/"
         frameborder="0"
@@ -58,7 +44,244 @@
         <br />
         <h4 id="input" style="color: lightgray"></h4>
       </div>
+
+      <!------------------------PRICING------------------------->
+
+      <div
+        style="
+          position: absolute;
+          display: none;
+          justify-content: space-evenly;
+          top: 25%;
+          z-index: 2;
+          width: 80%;
+          height: 38%;
+          background-color: #dff9fb;
+          border-radius: 16px;
+        "
+        id="pricing"
+      >
+        <div
+          style="
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          "
+        >
+          <h2 style="color: #130f40">App Store</h2>
+          <div
+            style="display: flex; justify-content: space-evenly; width: 100%"
+          >
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                background-color: #7ed6df;
+                border-radius: 20px;
+                cursor: pointer;
+              "
+              onclick="buy('recipes')"
+            >
+              <div
+                style="
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <h1 style="padding: 0; margin: 0">🥐</h1>
+                  <h5 style="padding: 0; margin: 0; color: white">Recipes</h5>
+                  <h6 style="padding: 0; margin: 0; color: gray">FREE</h6>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                background-color: #e056fd;
+                border-radius: 20px;
+                cursor: pointer;
+              "
+              onclick="buy('weather')"
+            >
+              <div
+                style="
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <h1 style="padding: 0; margin: 0">🌦️</h1>
+                  <h5 style="padding: 0; margin: 0; color: white">Weather</h5>
+                  <h6 style="padding: 0; margin: 0; color: gray">FREE</h6>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                background-color: #eb4d4b;
+                border-radius: 20px;
+                cursor: pointer;
+              "
+              onclick="buy('jokes')"
+            >
+              <div
+                style="
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <h1 style="padding: 0; margin: 0">🤣</h1>
+                  <h5 style="padding: 0; margin: 0; color: white">Jokes</h5>
+                  <h6 style="padding: 0; margin: 0; color: gray">FREE</h6>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                width: 150px;
+                height: 150px;
+                background-color: #6ab04c;
+                border-radius: 20px;
+                color: white;
+                cursor: pointer;
+              "
+              onclick="buy('stocks')"
+            >
+              <div
+                style="
+                  height: 100%;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                  "
+                >
+                  <h1 style="padding: 0; margin: 0">📈</h1>
+                  <h5 style="padding: 0; margin: 0">Stocks</h5>
+                  <h6 style="padding: 0; margin: 0; color: gray">
+                    0.001 MATIC
+                  </h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!------------------------NO LICENSE------------------------->
+
+      <div
+        style="
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          align-items: center;
+          top: 25%;
+          z-index: 2;
+          width: 80%;
+          height: 50%;
+          background-color: lightgray;
+          border-radius: 16px;
+        "
+        id="no-license-dialog"
+      >
+        <h3 style="color: #231d4f">You don't have a license for Vicky😥</h3>
+        <button
+          style="
+            background-color: #21bf96;
+            font-weight: bold;
+            font-size: medium;
+            color: white;
+            padding-left: 4em;
+            padding-right: 4em;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            border-radius: 20px;
+            border-color: transparent;
+          "
+          onclick="PurchaseDialogVisibility(true); NoLicenseDialogVisibility(false);"
+        >
+          Buy Now
+        </button>
+      </div>
+
+      <!------------------------CONNECT WALLET DIALOG------------------------->
+
+      <div
+        style="
+          position: absolute;
+          display: flex;
+          flex-direction: column;
+          top: 25%;
+          z-index: 2;
+          width: 80%;
+          height: 38%;
+          background-color: lightgray;
+          border-radius: 16px;
+          justify-content: center;
+          align-items: center;
+        "
+        id="connect-wallet-dialog"
+      >
+        <h3>Welcome!</h3>
+        <h4>Please connect your wallet to initialize Vicky.</h4>
+        <button
+          style="
+            padding-top: 1em;
+            padding-right: 3em;
+            padding-bottom: 1em;
+            padding-left: 3em;
+            background-color: #21bf96;
+            border-color: transparent;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: medium;
+            color: white;
+          "
+          onclick="login()"
+        >
+          Connect Wallet
+        </button>
+      </div>
     </div>
+    <script src="./moralis.js"></script>
   </body>
 </html>
 <style>
