@@ -7,24 +7,17 @@ import pyttsx3
 import json
 from vosk import Model, KaldiRecognizer
 import pyaudio
-from nlu.classifier import classify
-import eel
 
-class Core(): # Defines core functions of the AI
+class Core(): # Defines core functions of the assistant
     __skills = [] # Contains a list of skills that the assistant has at its disposal
 
     def __init__(self): # Constructor - initialises engines and neural networks for AI
-
-
         self.speech_engine = pyttsx3.init() # Speech synthesis engine
         self.vosk_model = Model("model")
         self.recogniser = KaldiRecognizer(self.vosk_model, 16000) # VOSK speech recognition model
         self.audio_input = pyaudio.PyAudio() # Microphone input
         self.input_stream = self.audio_input.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=8000) # Input stream
-        eel.handleLoaded(True)
-        self.text_to_speech("Hi, what do you need today?")
-        
-
+    
     def text_to_speech(self, text): # Utiilises speech synthesis engine
         self.speech_engine.say(text)
         self.speech_engine.runAndWait()
@@ -43,7 +36,6 @@ class Core(): # Defines core functions of the AI
 
                 if text == "vicky": # Wake word detection
                     print("Listening...")
-                    eel.handleResponse("Listening...")
                     self.text_to_speech("Listening...")
                     return True
 

@@ -5,3 +5,4 @@ yml==0.0.1
 tensorflow==2.9.1
 numpy==1.21.4
 os==
+eel==0.14.0

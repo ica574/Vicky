@@ -18,7 +18,7 @@ def uninstall(module_name): # Removes an app from the dictionary
     app_dict.pop(app_dict[module_name])
     json.dump(app_dict, open("./apps/apps.json", 'w'))
 
-def list():
+def list(): # Returns list of installed modules
     return app_dict
 
 def search(command): # Returns a key from a value in the dictionary
@@ -30,11 +30,8 @@ def search(command): # Returns a key from a value in the dictionary
                 pass
 
 def factory(module_name, class_name): # Instantiates objects based on the keys corresponding to them in the dictionary
-    try:
-        directory = importlib.util.spec_from_file_location(module_name, "./apps/{}.py".format(module_name))
-        app_module = directory.loader.load_module()
-        app_object = getattr(app_module, class_name)
-        app_instance = app_object()
-        return app_instance
-    except:
-        return "error"
+    directory = importlib.util.spec_from_file_location(module_name, "./apps/{}.py".format(module_name))
+    app_module = directory.loader.load_module()
+    app_object = getattr(app_module, class_name)
+    app_instance = app_object()
+    return app_instance

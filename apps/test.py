@@ -13,7 +13,7 @@ class Test_App():
     def cues(self):
         return ["test"]
 
-    def run(self):
+    def run(self, command):
         test = Test()
         return test.test()
 
