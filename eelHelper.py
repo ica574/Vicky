@@ -1,5 +1,18 @@
 import eel
+import apps.weather as weather
+from apps.package_manager import search, factory
 
+appsInstalled = []
+
+@eel.expose
+def setApps(apps):
+    appsInstalled = apps
+    
+    for app in appsInstalled:
+        if app == 'vicky-weather':
+            factory("weather", "Weather_App")
+            print("Installing weather...")
+        
 def letConn():
     count = 0
 

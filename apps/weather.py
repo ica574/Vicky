@@ -6,6 +6,7 @@
 import apps.package_manager as package_manager
 import geocoder
 import requests
+import eel
 
 class Weather():
     def exec(self):
@@ -43,4 +44,5 @@ class Weather_App():
         return weather_app.exec()
 
     def manifest(self):
+        print("weather manifest")
         package_manager.install("weather", self.__class__.__name__, self.cues())

@@ -5,6 +5,8 @@ console.log(Moralis);
 Moralis.start({ serverUrl, appId });
 
 async function login() {
+  eel.manifest();
+
   let user = Moralis.User.current();
   const chainId = await Moralis.chainId;
   console.log(chainId);
@@ -26,6 +28,7 @@ async function login() {
         ConnectDialogVisibility(false);
         console.log(polygonNFTs);
         let hasLicense = false;
+        let myApps = [];
         polygonNFTs.result.forEach((element) => {
           let metadata = JSON.parse(element.metadata);
           if (
@@ -34,9 +37,11 @@ async function login() {
             metadata.name === "Vicky Jokes" ||
             metadata.name === "vicky recipes"
           ) {
+            myApps.push(metadata.name);
             hasLicense = true;
           }
         });
+        eel.setApps(myApps);
         if (!hasLicense) {
           NoLicenseDialogVisibility(true);
         }
