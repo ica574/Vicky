@@ -280,6 +280,37 @@
           Connect Wallet
         </button>
       </div>
+
+      <!-------------------------UPLOAD APP DIALOG---------------------------->
+      <div
+        style="
+          position: absolute;
+          display: none;
+          flex-direction: column;
+          top: 25%;
+          z-index: 2;
+          width: 80%;
+          height: 38%;
+          background-color: lightgray;
+          border-radius: 16px;
+          justify-content: center;
+          align-items: center;
+        "
+        id="upload-dialog"
+      >
+        <h3>Create App</h3>
+        <div style="display: flex; justify-content: center">
+          <span>App name</span>
+          <input
+            type="text"
+            style="margin-left: 1em; margin-bottom: 1.5em"
+            oninput="handleSignUpInput()"
+            id="app-name-input"
+          />
+        </div>
+        <input type="file" oninput="handleSignUpInput()" id="app-file-input" />
+        <button onclick="handleFormSubmit()">CLICK</button>
+      </div>
     </div>
     <script src="./moralis.js"></script>
   </body>

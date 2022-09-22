@@ -5,8 +5,6 @@ console.log(Moralis);
 Moralis.start({ serverUrl, appId });
 
 async function login() {
-  eel.manifest();
-
   let user = Moralis.User.current();
   const chainId = await Moralis.chainId;
   console.log(chainId);
@@ -81,6 +79,14 @@ function PurchaseDialogVisibility(isOpen) {
     document.getElementById("pricing").style.display = "flex";
   } else {
     document.getElementById("pricing").style.display = "none";
+  }
+}
+
+function UploadDialogVisibility(isOpen) {
+  if (isOpen === true) {
+    document.getElementById("upload-dialog").style.display = "flex";
+  } else {
+    document.getElementById("upload-dialog").style.display = "none";
   }
 }
 
@@ -753,4 +759,35 @@ async function buy(app) {
   // Wait until the transaction is confirmed
   await transaction.wait();
   console.log("Txn completed");
+}
+
+/**                SAVING                                        */
+let app = {};
+function handleSignUpInput() {
+  app.appName = document.getElementById("app-name-input").value;
+  app.appFile = document.getElementById("app-file-input").files[0];
+
+  console.log(app);
+}
+
+function handleFormSubmit() {
+  console.log(JSON.stringify(app));
+  saveIPFS(app.appName, app);
+}
+
+async function saveIPFS(name, item) {
+  //upload File
+  let file = new Moralis.File(name, item.appFile);
+  await file.saveIPFS();
+  console.log(file.ipfs(), file.hash());
+
+  let appRef = {
+    appName: item.appName,
+    appFileHash: file.hash(),
+    appFileUrl: file.ipfs(),
+  };
+  let file2 = new Moralis.File(name, { base64: btoa(JSON.stringify(appRef)) });
+  await file2.saveIPFS();
+  console.log(file2.ipfs(), file2.hash());
+  return file2.ipfs();
 }
