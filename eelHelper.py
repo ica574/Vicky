@@ -1,7 +1,7 @@
 import eel
 import apps.weather as weather
 from apps.package_manager import search, factory
-
+from Main import importer
 appsInstalled = []
 
 @eel.expose
@@ -13,6 +13,18 @@ def setApps(apps):
             factory("weather", "Weather_App")
             print("Installing weather...")
         
+@eel.expose
+def installApps(apps):
+#after NFTs are checked
+#apps is an array of app names which user is licensed for, which correspond to the file name
+#for example: weather.py => ['weather']
+    for app in apps:
+        print("installing " + app)
+        path = "./apps/" + app
+        AppImport = importer(path)
+        AppClass = getattr(AppImport, app + "_App")
+        AppClass.manifest()
+
 def letConn():
     count = 0
 
@@ -24,3 +36,5 @@ def letConn():
             print("Break this batch!")
             break
         continue
+
+installApps(["weather"])

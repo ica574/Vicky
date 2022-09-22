@@ -31,7 +31,7 @@ async function login() {
           let metadata = JSON.parse(element.metadata);
           if (
             metadata.name === "Vicky Stocks" ||
-            metadata.name === "Vicky-weather" ||
+            metadata.name === "weather" ||
             metadata.name === "Vicky Jokes" ||
             metadata.name === "vicky recipes"
           ) {
@@ -39,7 +39,7 @@ async function login() {
             hasLicense = true;
           }
         });
-        eel.setApps(myApps);
+        eel.installApps(myApps);
         if (!hasLicense) {
           NoLicenseDialogVisibility(true);
         }
