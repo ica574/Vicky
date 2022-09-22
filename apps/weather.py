@@ -7,6 +7,7 @@ import apps.package_manager as package_manager
 import geocoder
 import requests
 import eel
+from core import Core
 
 class Weather():
     def exec(self):
@@ -31,6 +32,8 @@ class Weather():
             z = x["weather"]
             weather_description = z[0]["description"]
             print("Current temperature is " + str(current_temperature) + ".\n Current weather condition is " + str(weather_description))
+            tts = Core()
+            tts.text_to_speech("Current temperature is " + str(current_temperature) + ".\n Current weather condition is " + str(weather_description))
 
         else: # Handles case in which city name is not identified
             print("City mismatch!")

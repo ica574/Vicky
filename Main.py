@@ -15,8 +15,6 @@ eel.init("web")
 eel.start("index.html", block=False)
 eelHelper.letConn()
 
-weather = __import__('weather')
-
 vicky = Core() # Instantiates new Vicky instance with core functions
 
 vicky.before_wakeword, vicky.after_wakeword = EventHook(), EventHook() # Major events in the program's execution

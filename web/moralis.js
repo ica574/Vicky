@@ -5,6 +5,7 @@ console.log(Moralis);
 Moralis.start({ serverUrl, appId });
 
 async function login() {
+  eel.hello();
   let user = Moralis.User.current();
   const chainId = await Moralis.chainId;
   console.log(chainId);
@@ -25,22 +26,21 @@ async function login() {
         const polygonNFTs = await Moralis.Web3API.account.getNFTs(options);
         ConnectDialogVisibility(false);
         console.log(polygonNFTs);
-        let hasLicense = false;
         let myApps = [];
         polygonNFTs.result.forEach((element) => {
           let metadata = JSON.parse(element.metadata);
+          console.log(metadata);
           if (
-            metadata.name === "Vicky Stocks" ||
             metadata.name === "weather" ||
-            metadata.name === "Vicky Jokes" ||
-            metadata.name === "vicky recipes"
+            metadata.name === "Vicky Weather" ||
+            metadata.name === "test"
           ) {
             myApps.push(metadata.name);
-            hasLicense = true;
           }
         });
+        console.log(myApps);
         eel.installApps(myApps);
-        if (!hasLicense) {
+        if (myApps.length == 0) {
           NoLicenseDialogVisibility(true);
         }
       })
@@ -718,25 +718,20 @@ async function buy(app) {
     },
   ];
   let projectID = null;
-  let _msgValue = (0 * 1000000000000000000).toString();
+  let _msgValue = 0.001;
   switch (app) {
-    case "recipes":
+    case "test":
       projectID =
-        "43931014182185514038404861646576613527570967730078004044376888033594158509601";
-      _msgValue = (0.1 * 1000000000000000000).toString();
-      break;
+        "93984396407880522805196118409102085471525136868652211333210076664384284849658";
+      _msgValue = 0.001;
     case "weather":
       projectID =
         "81994587989992619171820055711032055418059131404544288173916442902830447958124";
+      _msgValue = 0.001;
       break;
-    case "jokes":
-      projectID =
-        "66956813426678163643190640437541922871317051322956188906411966005028597439015";
-      break;
-    case "stocks":
       projectID =
         "7678235331578057208434875357077070104058881615202953206983147281935578660662";
-      _msgValue = (0.001 * 1000000000000000000).toString();
+      _msgValue = 0.001;
       break;
     default:
       break;
@@ -761,6 +756,10 @@ async function buy(app) {
   console.log("Txn completed");
 }
 
+function handleUploadVisibility() {
+  document.getElementById("").style.display = "flex";
+}
+
 /**                SAVING                                        */
 let app = {};
 function handleSignUpInput() {
@@ -777,6 +776,7 @@ function handleFormSubmit() {
 
 async function saveIPFS(name, item) {
   //upload File
+  eel.hello();
   let file = new Moralis.File(name, item.appFile);
   await file.saveIPFS();
   console.log(file.ipfs(), file.hash());
@@ -789,5 +789,11 @@ async function saveIPFS(name, item) {
   let file2 = new Moralis.File(name, { base64: btoa(JSON.stringify(appRef)) });
   await file2.saveIPFS();
   console.log(file2.ipfs(), file2.hash());
-  return file2.ipfs();
+  document.getElementById("ipfs-url").textContent = file2.ipfs();
+  let saveObj = {
+    name: item.appName,
+    cid: file2.hash(),
+  };
+  console.log(saveObj);
+  eel.saveCID(saveObj);
 }

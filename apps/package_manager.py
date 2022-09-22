@@ -7,7 +7,7 @@ import urllib.request
 import importlib
 import json
 
-urllib.request.urlretrieve("https://bafybeiaojcquohxn5abpsczpbllcbfyrl2s3st3lyodhrpwi6jhqj4dbne.ipfs.dweb.link/repository.json", "marketplace/download/repository.json") # Downloads module repository to machine
+urllib.request.urlretrieve("https://bafybeiaojcquohxn5abpsczpbllcbfyrl2s3st3lyodhrpwi6jhqj4dbne.ipfs.dweb.link/repository.json", "apps/repository.json") # Downloads module repository to machine
 
 app_dict = json.load(open("./apps/apps.json", "r"))
 global_dict = json.load(open("./apps/repository.json"))

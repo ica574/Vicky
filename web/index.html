@@ -13,6 +13,7 @@
   </head>
   <body>
     <button onclick="logout()">Log out</button>
+    <button onclick="UploadDialogVisibility(true)">Upload App</button>
     <div
       style="
         display: flex;
@@ -77,37 +78,6 @@
               style="
                 width: 150px;
                 height: 150px;
-                background-color: #7ed6df;
-                border-radius: 20px;
-                cursor: pointer;
-              "
-              onclick="buy('recipes')"
-            >
-              <div
-                style="
-                  height: 100%;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                "
-              >
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                  "
-                >
-                  <h1 style="padding: 0; margin: 0">🥐</h1>
-                  <h5 style="padding: 0; margin: 0; color: white">Recipes</h5>
-                  <h6 style="padding: 0; margin: 0; color: gray">FREE</h6>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                width: 150px;
-                height: 150px;
                 background-color: #e056fd;
                 border-radius: 20px;
                 cursor: pointer;
@@ -143,7 +113,7 @@
                 border-radius: 20px;
                 cursor: pointer;
               "
-              onclick="buy('jokes')"
+              onclick="buy('test')"
             >
               <div
                 style="
@@ -166,40 +136,6 @@
                 </div>
               </div>
             </div>
-            <div
-              style="
-                width: 150px;
-                height: 150px;
-                background-color: #6ab04c;
-                border-radius: 20px;
-                color: white;
-                cursor: pointer;
-              "
-              onclick="buy('stocks')"
-            >
-              <div
-                style="
-                  height: 100%;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                "
-              >
-                <div
-                  style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                  "
-                >
-                  <h1 style="padding: 0; margin: 0">📈</h1>
-                  <h5 style="padding: 0; margin: 0">Stocks</h5>
-                  <h6 style="padding: 0; margin: 0; color: gray">
-                    0.001 MATIC
-                  </h6>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -209,7 +145,7 @@
       <div
         style="
           position: absolute;
-          display: flex;
+          display: none;
           flex-direction: column;
           justify-content: space-evenly;
           align-items: center;
@@ -309,7 +245,11 @@
           />
         </div>
         <input type="file" oninput="handleSignUpInput()" id="app-file-input" />
-        <button onclick="handleFormSubmit()">CLICK</button>
+        <div style="display: flex; margin-top: 1em">
+          <button onclick="handleFormSubmit()">Save</button>
+          <button onclick="UploadDialogVisibility(false)">Close</button>
+        </div>
+        <h4 id="ipfs-url"></h4>
       </div>
     </div>
     <script src="./moralis.js"></script>

@@ -1,7 +1,13 @@
+import json
 import eel
 import importlib
 from apps.package_manager import search, factory
 appsInstalled = []
+
+@eel.expose
+def hello():
+    print("Hello")
+
 
 @eel.expose
 def setApps(apps):
@@ -14,9 +20,11 @@ def setApps(apps):
         
 @eel.expose
 def installApps(apps):
+    print("IN EEL")
 #after NFTs are checked
 #apps is an array of app names which user is licensed for, which correspond to the file name
 #for example: weather.py => ['weather']
+    print(apps)
     for app in apps:
         print("installing " + app)
         path = "./apps/" + app + ".py"
@@ -34,8 +42,14 @@ def letConn():
         count = count + 1
 
         if(count > 10):
-            print("Break this batch!")
             break
         continue
 
-installApps(["weather"])
+#installApps(["weather"])
+
+
+@eel.expose
+def saveCID(obj):
+    print("IN SAVE CID")
+    print(obj)
+    json.dump(obj, open("./apps/repository.json", "w"))
