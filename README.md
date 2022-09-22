@@ -6,11 +6,11 @@ Vicky is a personal assistant you can trust!
 Hey Vicky... What do you do?
 
  With the power of AI, Vicky understands your questions and replies back!
- However, Vicky lives on the Polygon blockchain. All software used is hosted on IPFS and can be analysed and also improved. 
- One could create an app for himself as well as other Vicky users to use. This is also hosted on IPFS and can be done through an in-app form.
- Vicky is also distributed through Valist to ensure it's decentralized ecosystem. 
+ Vicky lives on the Polygon blockchain. All software used is hosted on IPFS and can be analysed and also improved. 
+ One could create an app for themself as well as other Vicky users to use. This is also hosted on IPFS and can be done through an in-app form.
+ In addition, Vicky is distributed through Valist to ensure decentralisation. 
 
- Some of these apps are token gated. The user must purchase License NFTs through our in-app store or through the Valist marketplace or Sapphire Launcher.
+ Some of these apps are token gated. The user must purchase License NFTs through our in-app store or through the Valist marketplace also known as Sapphire Launcher.
 
 ## Tech Stack
 
