@@ -1,7 +1,6 @@
 import eel
-import apps.weather as weather
+import importlib
 from apps.package_manager import search, factory
-from Main import importer
 appsInstalled = []
 
 @eel.expose
@@ -20,10 +19,12 @@ def installApps(apps):
 #for example: weather.py => ['weather']
     for app in apps:
         print("installing " + app)
-        path = "./apps/" + app
-        AppImport = importer(path)
-        AppClass = getattr(AppImport, app + "_App")
-        AppClass.manifest()
+        path = "./apps/" + app + ".py"
+        load = importlib.util.spec_from_file_location(app, path)
+        app_module = load.loader.load_module()
+        app_class = getattr(app_module, app.title() + "_App")
+        app_instance = app_class()
+        app_instance.manifest()
 
 def letConn():
     count = 0
